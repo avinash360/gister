@@ -1,0 +1,95 @@
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.usernameBox {
+    width: 80vmin;
+    height: 10vmin;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0 4vmin;
+    box-shadow: var(--inner-shadow);
+    background: var(--greyLight-1);
+    margin-right: 10px;
+}
+
+.fetchButton {
+    width: 10vmin;
+    height: 10vmin;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0 1vmin;
+    box-shadow: 0px 0px 3px;
+    /* box-shadow: var(--inner-shadow); */
+    background: var(--greyLight-1);
+    transition: all 200ms;
+    position: relative;
+    top: -2.2vmin;
+}
+
+.fetchButton:active {
+    /* box-shadow: 0px 4px 8px; */
+    box-shadow: var(--inner-shadow);
+    transform: scale(0.90);
+}
+
+.fetchButton:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .searchContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fetchButton {
+        width: 100%;
+        margin-top: 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .usernameBox {
+        margin: 0px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .searchContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fetchButton {
+        width: 100%;
+        margin-top: 2.0rem;
+        font-size: 1.75rem;
+    }
+
+    .usernameBox {
+        margin: 0px;
+        font-size: 2.0rem;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .fetchButton {
+        width: 100%;
+        margin-top: 1.0rem;
+        font-size: 2.5rem;
+    }
+
+    .usernameBox {
+        margin: 0 1rem 0 0;
+        font-size: 3.0rem;
+    }
+}

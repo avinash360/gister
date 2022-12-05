@@ -1,0 +1,9 @@
+.tag {
+    background-color: #efc052;
+    color: black;
+    border-radius: 5%;
+    width: fit-content;
+    padding: 5px;
+    font-size: 15px;
+    margin-right: 5px;
+}
