@@ -44,4 +44,5 @@ const Gist = ({ gist }) => {
     )
 }
 
+Gist.whyDidYouRender = true
 export default Gist
