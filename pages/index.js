@@ -1,6 +1,8 @@
 import Head from 'next/head'
+import Gists from '../components/Gists'
 import styles from '../styles/Home.module.css'
 import { useState, useRef, useEffect } from 'react'
+import Search from '../components/Search'
 
 export default function Home() {
   const [username, setUsername] = useState('')
@@ -24,10 +26,8 @@ export default function Home() {
         <h1 className={styles.title}>Welcome to Gister</h1>
         <h3 className={styles.description}>Get started by adding a Github username.</h3>
 
-        <div className={styles.searchContainer}>
-          <input ref={inputRef} className={styles.usernameBox} type="text" placeholder="Github Username" />
-          <button onClick={handleClick} className={styles.fetchButton}>Fetch!</button>
-        </div>
+        <Search ref={inputRef} handleClick={handleClick} />
+        {username && <Gists username={username} />}
       </main>
     </div>
   )
