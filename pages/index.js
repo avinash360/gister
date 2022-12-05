@@ -2,9 +2,10 @@ import Head from 'next/head'
 import Gists from '../components/Gists'
 import styles from '../styles/Home.module.css'
 import { useState, useRef, useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 import Search from '../components/Search'
 
-export default function Home() {
+const Home = () => {
   const [username, setUsername] = useState('')
   const inputRef = useRef(null)
 
@@ -29,6 +30,11 @@ export default function Home() {
         <Search ref={inputRef} handleClick={handleClick} />
         {username && <Gists username={username} />}
       </main>
+      <Toaster position='top-center' />
     </div>
   )
 }
+
+Home.whyDidYouRender = true
+
+export default Home
