@@ -8,6 +8,12 @@ const Gists = ({ username }) => {
     const [allGists, setAllGists] = useState([])
     const { gists, isLoading } = useGists(username, pageNum)
     const loadMoreRef = useRef(null)
+    const currentUserName = useRef(username)
+    if (currentUserName.current !== username) {
+        setAllGists([])
+        setPageNum(1)
+        currentUserName.current = username
+    }
 
     const handleObserver = useCallback((entries) => {
         const [target] = entries
@@ -16,10 +22,8 @@ const Gists = ({ username }) => {
         }
     }, [])
 
-    useEffect(() => setAllGists([]), [])
-
     useEffect(() => {
-        if (allGists.length) {
+        if (allGists.length === 2) {
             const option = { root: null, rootMargin: '0px', threshold: 1.0 }
             const observer = new IntersectionObserver(handleObserver, option)
             const currentRef = loadMoreRef.current
@@ -30,9 +34,8 @@ const Gists = ({ username }) => {
             if (pageNum > 1 && gists.length === 0) {
                 observer.unobserve(currentRef)
             }
-            return () => observer.unobserve(currentRef)
         }
-    }, [handleObserver, pageNum, allGists.length])
+    }, [handleObserver, allGists?.length])
 
     useEffect(() => {
         const uniqueGists = new Set([...allGists, ...gists])
@@ -44,9 +47,11 @@ const Gists = ({ username }) => {
             <div className={styles.grid}>
                 {allGists.map((gist) => <Gist key={gist.id} gist={gist} />)}
             </div>
-            {allGists.length > 0 && <div ref={loadMoreRef}>{isLoading && <span>Loading...</span>}</div>}
+            {allGists.length >= 2 && <div ref={loadMoreRef}>{isLoading && <span>Loading...</span>}</div>}
         </>
     )
 }
+
+Gists.whyDidYouRender = true
 
 export default Gists
